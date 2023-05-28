@@ -15,8 +15,8 @@ def test_step1(browser):
     testpage.click_login_button()
     #assert testpage.get_error_text() == "401"
     testpage.click_contact_button()
-    testpage.enter_name('Наталья Глушко')
-    testpage.enter_email('NatGlu@yandex.ru')
-    testpage.enter_content('HELLO')
+    testpage.enter_name('Glushko Natalya')
+    testpage.enter_email('test@mail.ru')
+    testpage.enter_content('Test information')
     testpage.click_contact_us_button()
     assert testpage.alert() == 'Form successfully submitted'

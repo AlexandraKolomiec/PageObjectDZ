@@ -1,6 +1,9 @@
 from BaseApp import BasePage
 from selenium.webdriver.common.by import By
 import logging
+#import time
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
 
 class TestSearcLocators:
     LOCATOR_LOGIN_FIELD = (By.XPATH, """//*[@id="login"]/div[1]/label/input""")
@@ -11,8 +14,8 @@ class TestSearcLocators:
     LOCATOR_NAME_FIELD = (By.XPATH, """//*[@id="contact"]/div[1]/label/input""")
     LOCATOR_EMAIL_FIELD = (By.XPATH, """//*[@id="contact"]/div[2]/label/input""")
     LOCATOR_CONTENT_FIELD = (By.XPATH, """//*[@id="contact"]/div[3]/label""")
-    LOCATOR_CONTACT_US_BTN = (By.CSS_SELECTOR, """button > div""")
-    #LOCATOR_ALERT = (By.XPATH, """""")
+    LOCATOR_CONTACT_US_BTN = (By.XPATH, """//*[@id="contact"]/div[4]/button""")
+    # LOCATOR_CONTACT_US_BTN = WebDriverWait(20).until(EC.element_to_be_clickable((By.XPATH, """//*[@id="contact"]/div[4]/button/div""")))
 
 
 class OperationsHelper(BasePage):
@@ -55,18 +58,17 @@ class OperationsHelper(BasePage):
     def enter_content(self, word):
         logging.info(f"Send '{word}' to element {TestSearcLocators.LOCATOR_CONTENT_FIELD[1]}")
         content_field = self.find_element(TestSearcLocators.LOCATOR_CONTENT_FIELD)
-        
+        content_field.clear()
         content_field.send_keys(word)
 
     def click_contact_us_button(self):
-        self.find_element(TestSearcLocators.LOCATOR_CONTACT_US_BTN, time=3).click()
-         
+        # time.sleep(1)
+        logging.info('Click button "Contact us"')
+        self.find_element(TestSearcLocators.LOCATOR_CONTACT_US_BTN, time=5).click()
 
-    def alert(self):
-        alert = self.driver.switch_to.alert(time=2)
-        #assert alert is not None
-        text = alert.text
-        #alert.accept()
-        return text 
-       
+    def switch_alert(self):
+        logging.info("Switch alert")
+        text = self.alert()
+        logging.info(text)
+        return text
     
