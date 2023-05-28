@@ -13,9 +13,9 @@ class TestSearcLocators:
     LOCATOR_CONTACT_BTN = (By.CSS_SELECTOR, """li:nth-child(2) > a""")
     LOCATOR_NAME_FIELD = (By.XPATH, """//*[@id="contact"]/div[1]/label/input""")
     LOCATOR_EMAIL_FIELD = (By.XPATH, """//*[@id="contact"]/div[2]/label/input""")
-    LOCATOR_CONTENT_FIELD = (By.XPATH, """//*[@id="contact"]/div[3]/label""")
+    LOCATOR_CONTENT_FIELD = (By.XPATH, """//*[@id="contact"]/div[3]/label/span/textarea""")
     LOCATOR_CONTACT_US_BTN = (By.XPATH, """//*[@id="contact"]/div[4]/button""")
-    # LOCATOR_CONTACT_US_BTN = WebDriverWait(20).until(EC.element_to_be_clickable((By.XPATH, """//*[@id="contact"]/div[4]/button/div""")))
+    
 
 
 class OperationsHelper(BasePage):
@@ -64,7 +64,7 @@ class OperationsHelper(BasePage):
     def click_contact_us_button(self):
         # time.sleep(1)
         logging.info('Click button "Contact us"')
-        self.find_element(TestSearcLocators.LOCATOR_CONTACT_US_BTN, time=5).click()
+        self.find_element(TestSearcLocators.LOCATOR_CONTACT_US_BTN).click()
 
     def switch_alert(self):
         logging.info("Switch alert")
